@@ -2,7 +2,7 @@ import random
 import pyttsx3
 from spellchecker import SpellChecker
 
-spellBee = ["Diurnal", "Poignant", "Ablution", "Animosity", "Maneuver", "Incessant", "Homogenize", "Impasse",            "Distinction", "Labyrinth", "Pittance", "Facsimile", "Citadel", "Idiopathic", "Scorned", "Robust",            "Potpourri", "Tantalize", "Mercantile", "Fictitious", "Incandescent", "Uncouth", "Martyr",            "Pediatrician", "Hindsight", "Irreconcilable", "Palatable", "Consciousness", "Acquiesce",            "Picturesque", "Chastise", "Indelible", "Blasphemous", "Derelict", "Pandemonium"]
+spellBee = ["ambiguous", "unsettling", "shemozzle", "audacity", "etiquette", "demeanor", "jostling", "facsimile", "despite", "turbulence", "subsequent", "souvenir", "foreign", "whence", "miniature", "perplexed", "insouciant", "acquaintance", "boundless", "haphazard", "despair", "invariably", "judicious", "sumptuous", "clenched", "fortitude", "endeavor", "pelf", "hindrance", "retrieve", "unflinching", "patriarch", "forfeit", "accumulate", "unsung"]
 
 engine = pyttsx3.init()
 spell = SpellChecker()

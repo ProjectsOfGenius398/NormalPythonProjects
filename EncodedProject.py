@@ -33,11 +33,7 @@ CODE = {
 
 # Generate a random question
 questions = [
-    'What is the capital of France?',
-    'Who invented the telephone?',
-    'What is the highest mountain in the world?',
-    'What is the largest country by area?',
-    'Who wrote the novel "Pride and Prejudice"?'
+    "Who is Anants best friend?",
 ]
 question = random.choice(questions)
 
@@ -45,7 +41,7 @@ question = random.choice(questions)
 answer = input(question + '\n').lower()
 
 # Check if the answer is correct
-if answer == 'paris':
+if answer == 'whydoyouwanttoknow':
     print('Correct!')
     messages = []  # list to store encoded/decoded messages
     action = input('Do you want to encode (e), decode (d), or quit (q)? ').lower()

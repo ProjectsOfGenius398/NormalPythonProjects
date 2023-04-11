@@ -33,15 +33,19 @@ CODE = {
 
 # Generate a random question
 questions = [
-    "Who is Anants best friend?",
+    "Enter the secret codes you must",
+    "Are the star wars prequels good?",
+    "What are your opinions on the Star Wars sequels",
+    "Is Rey a true Skywalker? Does she stand up to the might of Luke, Obi-Wan, Yoda and Anakin?"
 ]
-question = random.choice(questions)
+questionNumber=random.randint(0,3)
+question=questions[questionNumber]
 
-# Ask the user the random question
+# Ask the user the random questions
 answer = input(question + '\n').lower()
 
 # Check if the answer is correct
-if answer == 'whydoyouwanttoknow':
+if answer == 'if so powerful you are, then why run you must?' and questionNumber == '0' or answer == 'yes' and questionNumber == 1 or answer=="trash pieces of shit" and questionNumber==2 or answer=="not that piece of shit. no" and questionNumber==3:
     print('Correct!')
     messages = []  # list to store encoded/decoded messages
     action = input('Do you want to encode (e), decode (d), or quit (q)? ').lower()

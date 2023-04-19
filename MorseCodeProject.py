@@ -1,5 +1,3 @@
-import tkinter as tk
-import tkinter.messagebox
 import pyperclip
 
 # Dictionary for Morse code
@@ -23,38 +21,17 @@ def to_morse(text):
     return morse_code
 
 # Function to copy converted text to clipboard
-def copy_text():
-    pyperclip.copy(output.cget('text'))
+def copy_text(text):
+    pyperclip.copy(text)
 
-# Create window
-window = tk.Tk()
-window.title("Morse Code Converter")
-window.configure(bg='#a1dbcd')
-window.geometry("400x400")
+# Get input from user
+input_text = input("Enter text to convert: ")
 
-# Create input label
-input_label = tk.Label(window, text="Enter text to convert:", bg='#a1dbcd')
-input_label.pack(pady=10)
+# Convert text to Morse code
+morse_code = to_morse(input_text)
 
-# Create input box
-input_text = tk.Entry(window, width=30, bd=3)
-input_text.pack(pady=10)
+# Print converted text
+print("Converted text:", morse_code)
 
-# Create convert button
-convert_button = tk.Button(window, text="Convert", command=lambda: output.config(text=to_morse(input_text.get())))
-convert_button.pack(pady=10)
-
-# Create output label
-output_label = tk.Label(window, text="Converted text:", bg='#a1dbcd')
-output_label.pack(pady=10)
-
-# Create output box
-output = tk.Label(window, text="", width=30, height=2, relief="solid")
-output.pack(pady=10)
-
-# Create copy button
-copy_button = tk.Button(window, text="Copy", command=copy_text)
-copy_button.pack(pady=10)
-
-# Run the main loop
-window.mainloop()
+# Copy converted text to clipboard
+copy_text(morse_code)

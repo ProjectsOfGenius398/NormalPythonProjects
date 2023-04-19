@@ -45,7 +45,7 @@ question=questions[questionNumber]
 answer = input(question + '\n').lower()
 
 # Check if the answer is correct
-if answer == 'if so powerful you are, then why run you must?' and questionNumber == '0' or answer == 'yes' and questionNumber == 1 or answer=="trash pieces of shit" and questionNumber==2 or answer=="not that piece of shit. no" and questionNumber==3:
+if answer == 'if so powerful you are, then why run you must?' and questionNumber == '0' or answer == 'yes' and questionNumber == 1 or answer=="shit" and questionNumber==2 or answer=="no" and questionNumber==3:
     print('Correct!')
     messages = []  # list to store encoded/decoded messages
     action = input('Do you want to encode (e), decode (d), or quit (q)? ').lower()

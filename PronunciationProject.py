@@ -20,16 +20,28 @@ while True:
         already_said.add(word)
         engine.say(word)
         engine.runAndWait()
-        user_input = input("Enter the spelling of the word: ")
-        correct_spelling = spell.correction(user_input)
-        if user_input != word:
-            print(f"Incorrect, the correct spelling is {word}")
-            wrong[user_input] = word
-            wordsstuff.append(user_input)
-        else:
-            print("Correct!")
-            score=score+1
-            print("You have spelt ",score," out of 35 words correctly!")
+        attempts = 0
+        while True:
+            user_input = input("Enter the spelling of the word: ")
+            if user_input.lower() == "repeat":
+                engine.say(word)
+                engine.runAndWait()
+                continue
+            correct_spelling = spell.correction(user_input)
+            if user_input != word:
+                attempts += 1
+                if attempts < 3:
+                    print(f"Incorrect, try again or enter 'repeat' to hear the word again")
+                    continue
+                else:
+                    print(f"Incorrect, the correct spelling is {word}")
+                    wrong[user_input] = word
+                    wordsstuff.append(user_input)
+            else:
+                print("Correct!")
+                score=score+1
+                print("You have spelt ",score," out of 35 words correctly!")
+            break
 
     if len(already_said) == len(spellBee):
         print("All words have been said.")
@@ -45,9 +57,7 @@ while True:
         elif score <=30 and score >=25:
             print("So close!")
         elif score <=35 and score >=30:
-            print("A bit more! C'mon!")
-        elif score == 35:
-            print("Perfection lad! Pure, undisturbed perfection")
+            print("Awesome!")
 
         print("\nYou got ",length," words wrong and ",length2," words correctly. They have been saved into a txt file.")
         with open("misspelled_words.txt", "w") as f:

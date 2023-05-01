@@ -1,58 +1,45 @@
 import time
 import random
+from datetime import date, timedelta
 import datetime
 
-current_date = datetime.date.today()
 spinner = ['-', '\\', '|', '/']
 subjects=["Science", "English", "Hindi", "Maths", "History", "Civics","Geography", "French"]
-examSubjects=["Hindi", "English", "Science", "Maths", "French"]
-now = datetime.datetime.now()
-other_time = datetime.time(8, 0, 0)
-
-
-
-exam_dates = [
-    datetime.date(2023, 3, 1),
-    datetime.date(2023, 3, 3),
-    datetime.date(2023, 3, 6),
-    datetime.date(2023, 3, 10),
-    datetime.date(2023, 3, 13),
-]
-today_date = datetime.date.today()
-
-days_left = (exam_dates[0] - today_date).days
-
-
-
+today=datetime.date.today()
+yesterday = date.today() - timedelta(days=1)
 
 def wait(howLong):
     time.sleep(howLong)
+
+# Open file to write data
+filename = "work_done.txt"
+file = open(filename, "a")
+
 for i in range(20): # number of spins
     print("\rSpinning " + spinner[i%4], end="")
     wait(0.2)
 
 print("\n\nYour first subject is. . . . . . . . . . .")
 wait(1)
-print(random.choice(subjects) + "!!")
+sub1=random.choice(subjects)
+print(sub1 + "!!")
 
+# Get work done for subject 1
+done1 = input("After you are done with " + sub1 + ", write here what you have done + the amount of pages you did: ")
+# Write work done for subject 1 to file
+file.write(str(today) + " - " + sub1 + ": " + done1 + "\n")
 
 print("Your second subject is. . . . . . . . . . .")
 wait(1)
-print(random.choice(subjects) + "!!")
+sub2=random.choice(subjects)
+print(sub2 + "!!")
 
-if days_left < 4:
-    print("However, I would suggest preparing for your "+examSubjects[0]+" exam, its less than ", days_left, " days away.")
-if days_left = 56:
-    print("Forget everything, your "+examSubjects[0]+" exam is tomorrow. C'mon, you got this!")
-    exam_dates.pop(0)
-    examSubjects.pop(0)
-elif today_date == exam_dates[0] and now.time > other_time:
-    print("Your "+examSubjects[0]+" exam is today. Good luck!")
-    exam_dates.pop(0)
-    examSubjects.pop(0)
-elif now.time < other_time or today_date != exam_dates[0]:
-    print("Your "+examSubjects[0]+" exam is over! Awesome!")
-    exam_dates.pop(0)
-    examSubjects.pop(0)
-else:
-    print("And don't worry. You still have ",days_left," days to prepare for your "+examSubjects[0]+" exam.")
+# Get work done for subject 2
+done2 = input("After you are done with " + sub2 + ", write here what you have done + the amount of pages you did: ")
+# Write work done for subject 2 to file
+file.write(str(today) + " --> " + sub2 + ": " + done2 + "\n")
+if today!=yesterday:
+    file.write("______________________________________________")
+
+# Close file
+file.close()

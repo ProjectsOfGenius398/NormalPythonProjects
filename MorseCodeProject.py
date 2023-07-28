@@ -1,4 +1,3 @@
-import pyperclip
 
 # Dictionary for Morse code
 morse_dict = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 
@@ -20,9 +19,6 @@ def to_morse(text):
             morse_code += ' '
     return morse_code
 
-# Function to copy converted text to clipboard
-def copy_text(text):
-    pyperclip.copy(text)
 
 # Get input from user
 input_text = input("Enter text to convert: ")
@@ -32,6 +28,3 @@ morse_code = to_morse(input_text)
 
 # Print converted text
 print("Converted text:", morse_code)
-
-# Copy converted text to clipboard
-copy_text(morse_code)

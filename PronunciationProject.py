@@ -1,76 +1,14 @@
-import random
-import pyttsx3
-from spellchecker import SpellChecker
-
-spellBee = ["ambiguous", "unsettling", "shemozzle", "audacity", "etiquette", "demeanor", "jostling", "facsimile", "despite", "turbulence", "subsequent", "souvenir", "foreign", "whence", "miniature", "perplexed", "insouciant", "acquaintance", "boundless", "haphazard", "despair", "invariably", "judicious", "sumptuous", "clenched", "fortitude", "endeavor", "pelf", "hindrance", "retrieve", "unflinching", "patriarch", "forfeit", "accumulate", "unsung"]
-
-engine = pyttsx3.init()
-spell = SpellChecker()
-engine.setProperty('rate', 150)
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
-
-already_said = set()
+english_words = ["help", "shopping", "despite", "otherwise", "washing clothes", "yesterday", "never", "now", "to fill", "vacuum cleaner", "to want", "to know", "often", "sensible", "hungry", "worst", "to understand", "how many", "during", "washing utensils", "rabbit", "shout", "to hear", "farewell"]
+french_words = ["aider", "les courses", "malgre", "sinon", "la lessive", "hier", "jamais", "maintenant", "remplir", "aspirateur", "vouloir", "connaitre", "souvent", "prudent", "faim", "pire", "comprendre", "combien de", "pendant", "la vaisselle", "lapin", "crier", "entendre", "adieu"]
 score=0
-wrong = {}
-wordsstuff=[]
-while True:
-    word = random.choice(spellBee)
-    if word not in already_said:
-        already_said.add(word)
-        engine.say(word)
-        engine.runAndWait()
-        attempts = 0
-        while True:
-            user_input = input("Enter the spelling of the word: ")
-            if user_input.lower() == "repeat":
-                engine.say(word)
-                engine.runAndWait()
-                continue
-            correct_spelling = spell.correction(user_input)
-            if user_input != word:
-                attempts += 1
-                if attempts < 3:
-                    print(f"Incorrect, try again or enter 'repeat' to hear the word again")
-                    continue
-                else:
-                    print(f"Incorrect, the correct spelling is {word}")
-                    wrong[user_input] = word
-                    wordsstuff.append(user_input)
-            else:
-                print("Correct!")
-                score=score+1
-                print("You have spelt ",score," out of 35 words correctly!")
-            break
-
-    if len(already_said) == len(spellBee):
-        print("All words have been said.")
-        length=len(wordsstuff)
-        length1=len(spellBee)
-        length2=length1-length
-        if score<=5:
-            print("You can do this! Just a bit more effort")
-        elif score <=15 and score >=5:
-            print("You are on the right track!")
-        elif score <=25 and score >=15:
-            print("Just a bit more to go!")
-        elif score <=30 and score >=25:
-            print("So close!")
-        elif score <=35 and score >=30:
-            print("Awesome!")
-
-        print("\nYou got ",length," words wrong and ",length2," words correctly. They have been saved into a txt file.")
-        with open("misspelled_words.txt", "w") as f:
-            for k, v in wrong.items():
-                f.write(f"{k} -> {v}\n")
-                print(f"{k} -> {v}")
-
-        option=input("\n Do you want to try again? (y/n)").lower()
-        if option=="y":
-            # Repeat the spell bee only for the words that were spelled incorrectly
-            spellBee = list(wrong.values())
-            already_said = set()
-            wrong = {}
-            wordsstuff = []
-        else:
-            break
+for i in range(len(english_words)):
+    question = "What is the French word for " + english_words[i] + "?"
+    answer = french_words[i]
+    print(question)
+    your_answer = input()
+    if your_answer == answer:
+        print("Correct!")
+        score=score+1
+    else:
+        print("Incorrect. The answer is " + answer)
+    print("You scored ", score, " out of 20")
